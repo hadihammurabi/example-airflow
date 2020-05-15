@@ -9,7 +9,7 @@ from sqlalchemy import create_engine, Table, Column, Integer, String, Boolean
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 
-import fns.detikcom_scraper.app as detikcom_scraper
+import fns.detikcom_scraper.engine as detikcom_scraper
 
 db = create_engine('mysql://root:root@localhost:3306/airflow', pool_recycle=3600)
 Base = declarative_base()

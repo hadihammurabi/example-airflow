@@ -43,9 +43,14 @@ graph = DAG(
 
 def collect_callable(ds, **context):
   page = Variable.get('detikcom_index_page')
+  page = int(page)
+
+  if page > 24:
+    page = 1
+
   print('PAGE: {}'.format(page))
-  indexes = detikcom_scraper.get_and_parse_index(date=datetime.today().strftime('%m/%d/%Y'), page=int(page))
-  Variable.set('detikcom_index_page', int(page) + 1)
+  indexes = detikcom_scraper.get_and_parse_index(date=datetime.today().strftime('%m/%d/%Y'), page=page)
+  Variable.set('detikcom_index_page', page + 1)
   return indexes
 
 collect = PythonOperator(
